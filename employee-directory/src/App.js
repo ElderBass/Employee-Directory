@@ -9,23 +9,24 @@ class App extends Component {
   };
 
   componentDidMount() {
-    fetch("https://randomuser.me/api/?format=json").then(res => res.json())
+    fetch("https://randomuser.me/api/?results=15")
+      .then((res) => res.json())
       .then(
-      (data) => {
-        console.log(data);
-        this.setState({
-          isLoaded: true,
-          employees: data.results,
-        });
-      },
-      (error) => {
-        this.setState({
-          isLoaded: true,
-          error,
-        });
-      }
-    );
-  };
+        (data) => {
+          console.log(data);
+          this.setState({
+            isLoaded: true,
+            employees: data.results,
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+  }
 
   //getEmployees();
 
@@ -38,14 +39,23 @@ class App extends Component {
     } else {
       return (
         <div className="App">
-          <h1>Hello there!</h1>
-          <ul>
-            {employees.map((emp) => (
-              <li key={emp.id}>
-                {emp.name.first} {emp.name.last}
-              </li>
-            ))}
-          </ul>
+          <h1>Welcome to your Employee Directory</h1>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Location</th>
+            <th>Email</th>
+          </tr>
+          {employees.map((emp) => (
+            <tr key={emp.id.value}>
+              <td>{emp.name.first}</td>
+              <td>{emp.name.last}</td>
+              <td>{emp.dob.age}</td>
+              <td>{emp.location.city}, {emp.location.state}</td>
+              <td>{emp.email}</td>
+            </tr>
+          ))}
         </div>
       );
     }
