@@ -1,3 +1,11 @@
 .App {
   text-align: center;
 }
+
+.empTable {
+  width: 100%;
+}
+
+.empTable, th, td, tr{
+  border: 1px solid black;
+}

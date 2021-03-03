@@ -40,22 +40,26 @@ class App extends Component {
       return (
         <div className="App">
           <h1>Welcome to your Employee Directory</h1>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Age</th>
-            <th>Location</th>
-            <th>Email</th>
-          </tr>
-          {employees.map((emp) => (
-            <tr key={emp.id.value}>
-              <td>{emp.name.first}</td>
-              <td>{emp.name.last}</td>
-              <td>{emp.dob.age}</td>
-              <td>{emp.location.city}, {emp.location.state}</td>
-              <td>{emp.email}</td>
+          <table className="empTable">
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Age</th>
+              <th>Location</th>
+              <th>Email</th>
             </tr>
-          ))}
+            {employees.map((emp) => (
+              <tr key={emp.id.value}>
+                <td>{emp.name.first}</td>
+                <td>{emp.name.last}</td>
+                <td>{emp.dob.age}</td>
+                <td>
+                  {emp.location.city}, {emp.location.state}
+                </td>
+                <td>{emp.email}</td>
+              </tr>
+            ))}
+          </table>
         </div>
       );
     }
