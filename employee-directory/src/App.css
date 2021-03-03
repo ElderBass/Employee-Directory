@@ -1,11 +1,21 @@
-.App {
-  text-align: center;
-}
-
-.empTable {
+.empContainer {
   width: 100%;
+  align-items: center;
 }
 
-.empTable, th, td, tr{
-  border: 1px solid black;
+header {
+  text-align: center;
+  background-color: blue;
+  color: white;
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+.searchForm {
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.row {
+  margin-bottom: 10px;
 }

@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+import Container from "./components/Container";
+import Row from "./components/Row";
+import Col from "./components/Col";
+import Header from "./components/Header";
+import SearchForm from "./components/SearchForm";
 import "./App.css";
 
 class App extends Component {
@@ -6,6 +11,7 @@ class App extends Component {
     error: null,
     isLoaded: false,
     employees: [],
+    search: "",
   };
 
   componentDidMount() {
@@ -28,8 +34,13 @@ class App extends Component {
       );
   }
 
-  //getEmployees();
+  handleFormSubmit = () => {
 
+  }
+
+  handleInputChange = () => {
+    
+  }
   render() {
     const { error, isLoaded, employees } = this.state;
     if (error) {
@@ -38,29 +49,71 @@ class App extends Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <div className="App">
-          <h1>Welcome to your Employee Directory</h1>
-          <table className="empTable">
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Age</th>
-              <th>Location</th>
-              <th>Email</th>
-            </tr>
+        <>
+          <Header />
+
+          <Container>
+            <Row>
+              <Col size="col-md-12">
+                <SearchForm
+                  value={this.state.search}
+                  handleInputChange={this.handleInputChange}
+                  handleFormSubmit={this.handleFormSubmit}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col size="col-md-2">
+                <p>
+                  <strong>Image</strong>
+                </p>
+              </Col>
+              <Col size="col-md-2">
+                <p>
+                  <strong>Name</strong>
+                </p>
+              </Col>
+              <Col size="col-md-2">
+                <p>
+                  <strong>Phone</strong>
+                </p>
+              </Col>
+              <Col size="col-md-4">
+                <p>
+                  <strong>Email</strong>
+                </p>
+              </Col>
+              <Col size="col-md-2">
+                <p>
+                  <strong>Age</strong>
+                </p>
+              </Col>
+              <hr></hr>
+            </Row>
             {employees.map((emp) => (
-              <tr key={emp.id.value}>
-                <td>{emp.name.first}</td>
-                <td>{emp.name.last}</td>
-                <td>{emp.dob.age}</td>
-                <td>
-                  {emp.location.city}, {emp.location.state}
-                </td>
-                <td>{emp.email}</td>
-              </tr>
+              <Row>
+                <Col size="col-md-2">
+                  <img alt={emp.name.first} src={emp.picture.thumbnail}></img>
+                </Col>
+                <Col size="col-md-2">
+                  <p>
+                    {emp.name.first} {emp.name.last}
+                  </p>
+                </Col>
+                <Col size="col-md-2">
+                  <p>{emp.phone}</p>
+                </Col>
+                <Col size="col-md-4">
+                  <p>{emp.email}</p>
+                </Col>
+                <Col size="col-md-2">
+                  <p>{emp.dob.age}</p>
+                </Col>
+                <hr></hr>
+              </Row>
             ))}
-          </table>
-        </div>
+          </Container>
+        </>
       );
     }
   }
