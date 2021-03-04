@@ -1,7 +1,7 @@
 import Row from "./Row";
 import Col from "./Col";
 
-function FirstRow() {
+function FirstRow(props) {
     return (
         <Row>
         <Col size="col-md-2">
@@ -10,7 +10,7 @@ function FirstRow() {
           </p>
         </Col>
         <Col size="col-md-2">
-          <p>
+          <p onClick={props.sortName} id="nameRow">
             <strong>Name</strong>
           </p>
         </Col>

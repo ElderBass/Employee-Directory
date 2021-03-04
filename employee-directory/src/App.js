@@ -31,14 +31,29 @@ class App extends Component {
     event.preventDefault();
     this.getEmployees(this.state.search);
   };
-
+//i think both of these functions need work. not sure how to sort by name
   handleInputChange = (event) => {
+    //this function needs to be linked to filter-by-name somehow
     const name = event.target.name;
     const value = event.target.value;
+    //not sure I even need to set the state
+    //maybe use index of = ?
     this.setState({
       [name]: value,
     });
   };
+
+  sortByName = () => {
+    //this.state.employees.sort()
+    console.log("before sort = ", this.state.employees)
+    this.setState({
+      employees: this.state.employees.sort((a, b) => a.name.first.localeCompare(b.name.first))
+    })
+    
+  console.log("after sort = ", this.state.employees)
+  }
+
+
   render() {
     const { employees, search } = this.state;
 
@@ -56,7 +71,7 @@ class App extends Component {
               />
             </Col>
           </Row>
-          <FirstRow />
+          <FirstRow sortName={this.sortByName}/>
 
           {employees.map((emp) => (
             <EmployeeGrid

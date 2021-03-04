@@ -16,6 +16,10 @@ header {
   align-items: center;
 }
 
+#nameRow {
+  cursor: pointer;
+}
+
 .row {
   margin-bottom: 10px;
 }
