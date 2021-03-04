@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import SearchForm from "./components/SearchForm";
 import FirstRow from "./components/FirstRow";
 import EmployeeGrid from "./components/EmployeeGrid";
-import API from "../utils/API";
+import API from "./utils/API";
 import "./App.css";
 
 class App extends Component {
@@ -32,7 +32,7 @@ class App extends Component {
     this.getEmployees(this.state.search);
   };
 
-  handleInputChange = () => {
+  handleInputChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     this.setState({
