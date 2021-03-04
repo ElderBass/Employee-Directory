@@ -15,6 +15,7 @@ class App extends Component {
     search: "",
     sortedAge: false,
     sortedName: false,
+    isFiltered: false,
   };
   //convert this to query format from activities maybe
   componentDidMount() {
@@ -28,20 +29,29 @@ class App extends Component {
       })
       .catch((err) => console.log(err));
   };
-
-  handleFormSubmit = (event) => {
+  //not sure I need this function
+  filterByName = (event) => {
     event.preventDefault();
-    this.getEmployees(this.state.search);
-  };
-  //i think both of these functions need work. not sure how to sort by name
-  handleInputChange = (event) => {
-    //this function needs to be linked to filter-by-name somehow
-    const name = event.target.name;
-    const value = event.target.value;
-    //not sure I even need to set the state
-    //maybe use index of = ?
+    console.log("inside form submit");
+    let emp = this.state.employees.filter((emp) => emp.name.first === this.state.search);
+    console.log(emp)
     this.setState({
-      [name]: value,
+      employees: emp,
+      isFiltered: true,
+    })
+  };
+
+  handleFilterEmployee = (event) => {
+    event.preventDefault();
+    
+    //const name = event.target.name;
+    const empName = event.target.value;
+    const filteredEmp = this.state.employees.filter(emp => emp.name.first.toLowerCase().includes(empName.toLowerCase()));
+
+    this.setState({
+        employees: filteredEmp,
+        search: empName,
+        isfiltered: true,
     });
   };
 
@@ -89,7 +99,7 @@ class App extends Component {
             <Col size="col-md-12">
               <SearchForm
                 value={search}
-                handleInputChange={this.handleInputChange}
+                handleFilterEmployee={this.handleFilterEmployee}
                 filterByName={this.filterByName}
               />
             </Col>
@@ -113,45 +123,3 @@ class App extends Component {
 }
 
 export default App;
-
-// componentDidMount() {
-//   fetch("https://api.example.com/items")
-//     .then(res => res.json())
-//     .then(
-//       (result) => {
-//         this.setState({
-//           isLoaded: true,
-//           items: result.items
-//         });
-//       },
-//       // Note: it's important to handle errors here
-//       // instead of a catch() block so that we don't swallow
-//       // exceptions from actual bugs in components.
-//       (error) => {
-//         this.setState({
-//           isLoaded: true,
-//           error
-//         });
-//       }
-//     )
-// }
-
-// render() {
-//   const { error, isLoaded, items } = this.state;
-//   if (error) {
-//     return <div>Error: {error.message}</div>;
-//   } else if (!isLoaded) {
-//     return <div>Loading...</div>;
-//   } else {
-//     return (
-//       <ul>
-//         {items.map(item => (
-//           <li key={item.id}>
-//             {item.name} {item.price}
-//           </li>
-//         ))}
-//       </ul>
-//     );
-//   }
-// }
-// }
