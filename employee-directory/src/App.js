@@ -13,6 +13,8 @@ class App extends Component {
   state = {
     employees: [],
     search: "",
+    sortedAge: false,
+    sortedName: false,
   };
   //convert this to query format from activities maybe
   componentDidMount() {
@@ -31,7 +33,7 @@ class App extends Component {
     event.preventDefault();
     this.getEmployees(this.state.search);
   };
-//i think both of these functions need work. not sure how to sort by name
+  //i think both of these functions need work. not sure how to sort by name
   handleInputChange = (event) => {
     //this function needs to be linked to filter-by-name somehow
     const name = event.target.name;
@@ -44,25 +46,36 @@ class App extends Component {
   };
 
   sortByName = () => {
-    //this.state.employees.sort()
-    console.log("before sort = ", this.state.employees)
-    this.setState({
-      employees: this.state.employees.sort((a, b) => a.name.first.localeCompare(b.name.first))
-    })
-    
-  console.log("after sort = ", this.state.employees)
-  }
+    this.state.sortedName
+      ? this.setState({
+          employees: this.state.employees.sort((a, b) =>
+            b.name.first.localeCompare(a.name.first)
+          ),
+          sortedName: false,
+        })
+      : this.setState({
+          employees: this.state.employees.sort((a, b) =>
+            a.name.first.localeCompare(b.name.first)
+          ),
+          sortedName: true,
+        });
+  };
 
   sortByAge = () => {
-    //this.state.employees.sort()
-    console.log("before sort = ", this.state.employees)
-    this.setState({
-      employees: this.state.employees.sort(function(a, b){return a.dob.age-b.dob.age})
-    })
-    
-  console.log("after sort = ", this.state.employees)
-  }
-
+    this.statesortedAge
+      ? this.setState({
+          employees: this.state.employees.sort(function (a, b) {
+            return b.dob.age - a.dob.age;
+          }),
+          sortedAge: false,
+        })
+      : this.setState({
+          employees: this.state.employees.sort(function (a, b) {
+            return a.dob.age - b.dob.age;
+          }),
+          sortedAge: true,
+        });
+  };
 
   render() {
     const { employees, search } = this.state;
@@ -81,10 +94,7 @@ class App extends Component {
               />
             </Col>
           </Row>
-          <FirstRow 
-          sortName={this.sortByName}
-          sortAge={this.sortByAge}
-          />
+          <FirstRow sortName={this.sortByName} sortAge={this.sortByAge} />
 
           {employees.map((emp) => (
             <EmployeeGrid
