@@ -10,7 +10,7 @@ function FirstRow(props) {
           </p>
         </Col>
         <Col size="col-md-2">
-          <p onClick={props.sortName} id="nameRow">
+          <p onClick={props.sortName} className="rowHead">
             <strong>Name</strong>
           </p>
         </Col>
@@ -25,7 +25,7 @@ function FirstRow(props) {
           </p>
         </Col>
         <Col size="col-md-2">
-          <p>
+          <p onClick={props.sortAge} className="rowHead">
             <strong>Age</strong>
           </p>
         </Col>

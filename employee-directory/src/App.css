@@ -16,7 +16,7 @@ header {
   align-items: center;
 }
 
-#nameRow {
+.rowHead {
   cursor: pointer;
 }
 

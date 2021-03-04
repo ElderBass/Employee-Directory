@@ -53,6 +53,16 @@ class App extends Component {
   console.log("after sort = ", this.state.employees)
   }
 
+  sortByAge = () => {
+    //this.state.employees.sort()
+    console.log("before sort = ", this.state.employees)
+    this.setState({
+      employees: this.state.employees.sort(function(a, b){return a.dob.age-b.dob.age})
+    })
+    
+  console.log("after sort = ", this.state.employees)
+  }
+
 
   render() {
     const { employees, search } = this.state;
@@ -67,11 +77,14 @@ class App extends Component {
               <SearchForm
                 value={search}
                 handleInputChange={this.handleInputChange}
-                handleFormSubmit={this.handleFormSubmit}
+                filterByName={this.filterByName}
               />
             </Col>
           </Row>
-          <FirstRow sortName={this.sortByName}/>
+          <FirstRow 
+          sortName={this.sortByName}
+          sortAge={this.sortByAge}
+          />
 
           {employees.map((emp) => (
             <EmployeeGrid
