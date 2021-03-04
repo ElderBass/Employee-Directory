@@ -9,15 +9,52 @@ import EmployeeGrid from "./components/EmployeeGrid";
 import API from "./utils/API";
 import "./App.css";
 
+const initialState = {};
+
 class App extends Component {
-  state = {
+
+  static initialState = {
     employees: [],
     search: "",
     sortedAge: false,
     sortedName: false,
     isFiltered: false,
   };
-  //convert this to query format from activities maybe
+
+constructor(props) {
+    super(props)
+
+  this.state = initialState;  
+}
+
+  // constructor(props) {
+  //   super(props);
+
+  //   this.initialState = {
+  //     employees: [],
+  //     search: "",
+  //     sortedAge: false,
+  //     sortedName: false,
+  //     isFiltered: false,
+  //   };
+  //   this.state = this.initialState;
+  // }
+  
+  // get initialState() {
+  //   return {
+  //     employees: [],
+  //     search: "",
+  //     sortedAge: false,
+  //     sortedName: false,
+  //     isFiltered: false,
+  //   };
+  // }
+
+  handleRevertState(event) {
+    event.preventDefault();
+    this.setState(initialState);
+  }
+
   componentDidMount() {
     this.getEmployees();
   }
@@ -29,17 +66,6 @@ class App extends Component {
       })
       .catch((err) => console.log(err));
   };
-  //not sure I need this function
-  filterByName = (event) => {
-    event.preventDefault();
-    console.log("inside form submit");
-    let emp = this.state.employees.filter((emp) => emp.name.first === this.state.search);
-    console.log(emp)
-    this.setState({
-      employees: emp,
-      isFiltered: true,
-    })
-  };
 
   handleFilterEmployee = (event) => {
     event.preventDefault();
@@ -47,7 +73,7 @@ class App extends Component {
     //const name = event.target.name;
     const empName = event.target.value;
     const filteredEmp = this.state.employees.filter(emp => emp.name.first.toLowerCase().includes(empName.toLowerCase()));
-
+    //this works dynamically and shit, but how to revert back to the OG emp list?
     this.setState({
         employees: filteredEmp,
         search: empName,
@@ -100,10 +126,11 @@ class App extends Component {
               <SearchForm
                 value={search}
                 handleFilterEmployee={this.handleFilterEmployee}
-                filterByName={this.filterByName}
+                revertState={this.handleRevertState}
               />
             </Col>
           </Row>
+
           <FirstRow sortName={this.sortByName} sortAge={this.sortByAge} />
 
           {employees.map((emp) => (
