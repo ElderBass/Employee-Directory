@@ -9,50 +9,22 @@ import EmployeeGrid from "./components/EmployeeGrid";
 import API from "./utils/API";
 import "./App.css";
 
-const initialState = {};
 
 class App extends Component {
 
-  static initialState = {
+  state = {
     employees: [],
     search: "",
     sortedAge: false,
     sortedName: false,
     isFiltered: false,
+    initialEmployees: [],
   };
 
-constructor(props) {
-    super(props)
-
-  this.state = initialState;  
-}
-
-  // constructor(props) {
-  //   super(props);
-
-  //   this.initialState = {
-  //     employees: [],
-  //     search: "",
-  //     sortedAge: false,
-  //     sortedName: false,
-  //     isFiltered: false,
-  //   };
-  //   this.state = this.initialState;
-  // }
-  
-  // get initialState() {
-  //   return {
-  //     employees: [],
-  //     search: "",
-  //     sortedAge: false,
-  //     sortedName: false,
-  //     isFiltered: false,
-  //   };
-  // }
-
-  handleRevertState(event) {
+  handleRevertState = (event) => {
     event.preventDefault();
-    this.setState(initialState);
+    
+   this.setState({employees: this.state.initialEmployees, search: ""});
   }
 
   componentDidMount() {
@@ -62,7 +34,7 @@ constructor(props) {
   getEmployees = () => {
     API.search()
       .then((res) => {
-        this.setState({ employees: res.data.results });
+        this.setState({ employees: res.data.results, initialEmployees: res.data.results });
       })
       .catch((err) => console.log(err));
   };
@@ -98,7 +70,7 @@ constructor(props) {
   };
 
   sortByAge = () => {
-    this.statesortedAge
+    this.state.sortedAge
       ? this.setState({
           employees: this.state.employees.sort(function (a, b) {
             return b.dob.age - a.dob.age;
