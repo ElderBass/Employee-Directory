@@ -102,9 +102,9 @@ class App extends Component {
               />
             </Col>
           </Row>
-
+          <br></br>
           <FirstRow sortName={this.sortByName} sortAge={this.sortByAge} />
-
+          
           {employees.map((emp) => (
             <EmployeeGrid
               thumbnail={emp.picture.thumbnail}

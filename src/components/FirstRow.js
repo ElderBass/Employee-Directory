@@ -2,8 +2,23 @@ import Row from "./Row";
 import Col from "./Col";
 
 function FirstRow(props) {
-    return (
-        <Row>
+  const style = {
+    tips: {
+      textAlign: "center",
+      color: "rgb(2, 117, 216)"
+    },
+  };
+
+  return (
+    <>
+      <div className="container" style={style.tips}>
+        <h4>*Tips:</h4>
+        <h6>Click "Name" To Toggle Sorting Employees Alphabetically in Ascending and Descending Order</h6>
+        <h6>Click "Age" To Toggle Sorting Employees by Age in Ascending and Descending Order</h6>
+      </div>
+      <br></br>
+      <br></br>
+      <Row>
         <Col size="col-md-2">
           <p>
             <strong>Image</strong>
@@ -31,7 +46,8 @@ function FirstRow(props) {
         </Col>
         <hr></hr>
       </Row>
-    )
+    </>
+  );
 }
 
 export default FirstRow;
