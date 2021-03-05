@@ -1,55 +1,70 @@
-# Unit 19 React Homework: Employee Directory
+# Employee Directory
 
-## Overview
+A React app for viewing and sorting your employees, by Seth Zygarlicke.
 
-For this assignment, you'll create a employee directory with React. This assignment will require you to break up your application's UI into components, manage component state, and respond to user events.
+### Links
 
-## User Story
+* Github Repository: [https://github.com/ElderBass/Employee-Directory.git](https://github.com/ElderBass/Employee-Directory.git)
+* Deployed: [https://elderbass.github.io/Employee-Directory/](https://elderbass.github.io/Employee-Directory/)
 
-* As a user, I want to be able to view my entire employee directory at once so that I have quick access to their information.
+## Table of Contents
 
-## Business Context
 
-An employee or manager would benefit greatly from being able to view non-sensitive data about other employees. It would be particularly helpful to be able to filter employees by name.
+* [Description](#description)
 
-## Acceptance Criteria
+* [Technologies](#technologies)
+    
+* [Installation](#installation)
+    
+* [Contributing](#contributing)
+    
+* [Questions](#questions)
 
-Given a table of random users generated from the [Random User API](https://randomuser.me/), when the user loads the page, a table of employees should render. 
+## Description
 
-The user should be able to:
+Employee Director is a React app for managers, allowing them to view and sift through their directory of employees.
 
-  * Sort the table by at least one category
+Upon loading the page, the company's entire directory of employees will populate the page in a neatly ordered table. This table consists of the most relevant information about each employee - a thumbnail of their headshot, their full name, email, phone number, and age.
 
-  * Filter the users by at least one property.
+The manager will also immediately note a list of tips to help guide them through how to use the app. The manager can click on the "Name" column to sort their employees alphabetically in ascending order. If they click "Name" again, the table will sort employee first names by DESCENDING order. 
 
-## Commit Early and Often
+The manager can also click on the "Age" column to sort employees in a similar fashion. The first click will sort the employees in ascending order. A second click will reverse that order. 
 
-One of the most important skills to master as a web developer is version control. Building the habit of committing via Git is important for two reasons:
+Finally, the manager can type an employee's first name in the search bar to filter the table of employees dynamically based on the manager's input. Only those employees that start with the letters the manager inputs will populate the table. To revert back to the old table, the manager must simply click the "Reset Table" button.
 
-1. Your commit history is a signal to employers that you are actively working on projects and learning new skills
+### Demonstration
 
-2. Your commit history allows you to revert your code base in the event that you need to return to a previous state
+![Employee Directory Demonstration](public/employee-directory.gif)
 
-Follow these guidelines for committing:
 
-* Make single purpose commits for related changes to ensure a clean, manageable history. If you are fixing two issues, make two commits
+## Technologies
 
-* Write descriptive, meaningful commit messages so that you and anyone else looking at your repository can easily understand its history
+Employee Directory is a React app, and as such many of the tecnologies used within are bundled inside the React, such as Babel.
 
-* Don't commit half done work, for the sake of your collaborators (and your future self!)
+Other packages used in this application include Axios, for making the API call to the external "random user" API, 
 
-* Test your application before you commit to ensure functionality at every step in the development process
+All of the code was written in the VS Code program.  
 
-* We would like you to have well over 200 commits by graduation, so commit early and often!
+## Installation
 
-* Deploy this site to GitHub Pages using the [Create React App docs for deployment.](https://create-react-app.dev/docs/deployment/#github-pages)
+You know, to be quite frank, I'm not sure you even need to do this installation. I honestly don't know how this works with React. Normally, to run something like this, you just clone down the repository and run the command
+```
+npm i
+```
+to install all the packages contained within.
 
-* **Important**: Be sure to push your codebase to GitHub and **NOT** your built and deployed code. Ensure this happens by following the above instructions and using the `gh-pages` branch to host the deployed application's code.
+However, since this is the first React app I've ever made, I'm not quite sure what you would do if you cloned this down. However, in order to create a new React app of your own (if you even need to) run this command in your terminal:
 
-## Submission on BCS
+```
+npx create-react-app employee-directory
+```
 
-You are required to submit the following:
+## Contributing
 
-* the URL to the deployed application
+If you wish to contribute to this repository, feel free to fork it to your local machine and do with it as you please.
 
-* the URL to the Github repository
+## Questions 
+
+If you have any questions or comments about this repo, email the creator Seth at [zygster11@gmail.com](zygster11@gmail.com)
+
+For more projects by Seth, visit his Github page at [https://github.com/ElderBass](https://github.com/ElderBass)
